@@ -18,18 +18,18 @@ int main(int argc, char* argv[])
 
     ctp.init();
 	std::cin >> a;
-	CThostFtdcReqAuthenticateField thostFtdcReqAuthenticateField = { 0 };
-    strcpy(thostFtdcReqAuthenticateField.AppID, "simnow_client_test");
-    strcpy(thostFtdcReqAuthenticateField.UserID, "158477");
-    strcpy(thostFtdcReqAuthenticateField.AuthCode, "0000000000000000");
-    strcpy(thostFtdcReqAuthenticateField.BrokerID, "9999");
-    // ctp.ReqAuthenticate(&thostFtdcReqAuthenticateField, 1);
+	CThostFtdcReqAuthenticateField reqAuthenticate = { 0 };
+    strcpy(reqAuthenticate.AppID, "simnow_client_test");
+    strcpy(reqAuthenticate.UserID, "158477");
+    strcpy(reqAuthenticate.AuthCode, "0000000000000000");
+    strcpy(reqAuthenticate.BrokerID, "9999");
+    ctp.ReqAuthenticate(&reqAuthenticate, 1);
 
 	CThostFtdcReqUserLoginField reqUserLogin = { 0 };
     strcpy(reqUserLogin.BrokerID,"9999");
     strcpy(reqUserLogin.UserID,"158477");
     strcpy(reqUserLogin.Password,"1a2s3d");
-    ctp.ReqUserLogin(&reqUserLogin, 1);
+    ctp.ReqUserLogin(&reqUserLogin, 2);
 
 	
 	std::cin >> a;
