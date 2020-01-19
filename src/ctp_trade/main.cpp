@@ -1,7 +1,6 @@
 #include "ctp_trade_handler.h"
 #include "INIReader.h"
 #include <iostream>
-#include <unistd.h>
 
 int main(int argc, char* argv[])
 {
@@ -28,7 +27,6 @@ int main(int argc, char* argv[])
     strcpy(pThostFtdcReqUserLoginField->UserID,"158477");
     strcpy(pThostFtdcReqUserLoginField->Password,"1a2s3d");
     ctp.ReqUserLogin(pThostFtdcReqUserLoginField, 2);
-    sleep(10);
     ctp.exit();
     return 0;
 }
