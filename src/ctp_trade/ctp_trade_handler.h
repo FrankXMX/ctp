@@ -138,6 +138,10 @@ private:
     thread _task_thread;                 //工作线程指针（向python中推送数据）
     TaskQueue _task_queue;               //任务队列
     bool _active = false;                //工作状态
+	mutex mutex_;
+	condition_variable cond_;			//条件变量
+	bool ready_ = false;
+	bool login_ = false;
 public:
     ctp_trade_handle(){};
     ~ctp_trade_handle()
@@ -670,6 +674,8 @@ public:
     int ReqAuthenticate(CThostFtdcReqAuthenticateField *pReqAuthenticateField, int nRequestID);
 
     int ReqUserLogin(CThostFtdcReqUserLoginField *pReqUserLoginField, int nRequestID);
+
+	int ReqUserPasswordUpdate(CThostFtdcUserPasswordUpdateField* pUserPasswordUpdate, int nRequestID);
 };
 
 #endif

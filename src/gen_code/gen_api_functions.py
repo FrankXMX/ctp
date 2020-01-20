@@ -240,7 +240,7 @@ class ApiGenerator:
                         for struct_field, struct_type in struct_fields.items():
                             if struct_type == "string":
                                 f.write(
-                                    f"\t\tprintf(\"{struct_field} = %s\\n\", toUtf(task_error->{struct_field}));\n")
+                                    f"\t\tprintf(\"{struct_field} = %s\\n\", (task_error->{struct_field}));\n")
                             elif struct_type == "double":
                                 f.write(
                                     f"\t\tprintf(\"{struct_field} = %f\\n\", task_error->{struct_field});\n")
@@ -262,7 +262,7 @@ class ApiGenerator:
                         for struct_field, struct_type in struct_fields.items():
                             if struct_type == "string":
                                 f.write(
-                                    f"\t\tprintf(\"{struct_field} = %s\\n\", toUtf(task_data->{struct_field}));\n")
+                                    f"\t\tprintf(\"{struct_field} = %s\\n\", (task_data->{struct_field}));\n")
                             elif struct_type == "double":
                                 f.write(
                                     f"\t\tprintf(\"{struct_field} = %f\\n\", task_data->{struct_field});\n")
@@ -362,5 +362,6 @@ if __name__ == "__main__":
     # md_generator = ApiGenerator("../../include/ThostFtdcMdApi.h", "ctp", "md", "ctp_maket_data_handle")
     # md_generator.run()
 
-    td_generator = ApiGenerator("../../include/ThostFtdcTraderApi.h", "ctp", "td", "ctp_trade_handle")
+    # td_generator = ApiGenerator("../../include/ThostFtdcTraderApi.h", "ctp", "td", "ctp_trade_handle")
+    td_generator = ApiGenerator("include/ThostFtdcTraderApi.h", "ctp", "td", "ctp_trade_handle")
     td_generator.run()

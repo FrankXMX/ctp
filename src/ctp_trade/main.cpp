@@ -17,21 +17,30 @@ int main(int argc, char* argv[])
     ctp.RegisterFront("tcp://180.168.146.187:10100");
 
     ctp.init();
-	std::cin >> a;
-	CThostFtdcReqAuthenticateField reqAuthenticate = { 0 };
-    strcpy(reqAuthenticate.AppID, "simnow_client_test");
-    strcpy(reqAuthenticate.UserID, "158477");
-    strcpy(reqAuthenticate.AuthCode, "0000000000000000");
-    strcpy(reqAuthenticate.BrokerID, "9999");
-    ctp.ReqAuthenticate(&reqAuthenticate, 1);
+
+    //CThostFtdcReqAuthenticateField reqAuthenticate = { 0 };
+    //strcpy(reqAuthenticate.AppID, "simnow_client_test");
+    //strcpy(reqAuthenticate.UserID, "158477");
+    //strcpy(reqAuthenticate.AuthCode, "0000000000000000");
+    //strcpy(reqAuthenticate.BrokerID, "9999");
+    //ctp.ReqAuthenticate(&reqAuthenticate, 1);
 
 	CThostFtdcReqUserLoginField reqUserLogin = { 0 };
     strcpy(reqUserLogin.BrokerID,"9999");
     strcpy(reqUserLogin.UserID,"158477");
-    strcpy(reqUserLogin.Password,"1a2s3d");
-    ctp.ReqUserLogin(&reqUserLogin, 2);
+    strcpy(reqUserLogin.Password,"qwe123");
+    ctp.ReqUserLogin(&reqUserLogin, 1);
 
-	
+	std::cout << "input new password : ";
+	std::cin >> a;
+	CThostFtdcUserPasswordUpdateField reqUserPasswordUpdate = { 0 };
+	strcpy(reqUserPasswordUpdate.BrokerID, "9999");
+	strcpy(reqUserPasswordUpdate.UserID, "158477");
+	strcpy(reqUserPasswordUpdate.OldPassword, "qwe123");
+	strcpy(reqUserPasswordUpdate.NewPassword, a.c_str());
+
+	ctp.ReqUserPasswordUpdate(&reqUserPasswordUpdate, 3);
+
 	std::cin >> a;
     ctp.exit();
     return 0;
